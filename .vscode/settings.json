@@ -1,0 +1,8 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.sourcePaths": [
+        "01_Java_HelloWorld/src",
+        "a01-java-helloworld/src/main/java"
+    ]
+    
+}
