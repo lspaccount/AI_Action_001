@@ -1,13 +1,14 @@
+com\finance\util\JwtUtil.class
 com\finance\FinanceApplication.class
+com\finance\config\WebConfig.class
 com\finance\service\impl\UserServiceImpl.class
 com\finance\controller\UserController.class
 com\finance\entity\User.class
+com\finance\config\LoginInterceptor.class
 com\finance\service\BillService.class
 com\finance\service\impl\BillServiceImpl.class
 com\finance\mapper\BillMapper.class
-application.yml
 com\finance\service\UserService.class
-schema.sql
 com\finance\entity\Bill.class
 com\finance\mapper\UserMapper.class
 com\finance\controller\BillController.class

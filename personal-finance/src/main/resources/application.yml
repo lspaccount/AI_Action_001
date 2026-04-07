@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
 
 spring:
   application:
@@ -18,6 +18,12 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+  session:
+    store-type: none
+  sql:
+    init:
+      enabled: true
+      schema-locations: classpath:schema.sql
 
 mybatis-plus:
   configuration:
@@ -26,3 +32,6 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      table-prefix: t_
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.finance.entity

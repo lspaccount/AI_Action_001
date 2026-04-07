@@ -22,8 +22,9 @@ public class BillServiceImpl extends ServiceImpl<BillMapper, Bill> implements Bi
 
     @Override
     public boolean addBill(Bill bill) {
-        bill.setBillDate(new Date());
+        bill.setDate(new Date());
         bill.setCreateTime(new Date());
+        bill.setUpdateTime(new Date());
         return billMapper.insert(bill) > 0;
     }
 
@@ -31,7 +32,7 @@ public class BillServiceImpl extends ServiceImpl<BillMapper, Bill> implements Bi
     public List<Bill> getBillList(Long userId) {
         QueryWrapper<Bill> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id", userId);
-        wrapper.orderByDesc("bill_date");
+        wrapper.orderByDesc("date");
         return billMapper.selectList(wrapper);
     }
 
@@ -43,12 +44,12 @@ public class BillServiceImpl extends ServiceImpl<BillMapper, Bill> implements Bi
         
         QueryWrapper<Bill> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id", userId);
-        wrapper.likeRight("bill_date", yearMonth);
+        wrapper.likeRight("date", yearMonth);
         
         List<Bill> bills = billMapper.selectList(wrapper);
         
         for (Bill bill : bills) {
-            if (bill.getType() == 1) {
+            if ("income".equals(bill.getType())) {
                 stats.put("income", stats.get("income").add(bill.getAmount()));
             } else {
                 stats.put("expense", stats.get("expense").add(bill.getAmount()));

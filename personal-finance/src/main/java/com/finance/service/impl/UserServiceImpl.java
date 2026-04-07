@@ -7,7 +7,6 @@ import com.finance.mapper.UserMapper;
 import com.finance.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
@@ -31,7 +30,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         
         User user = new User();
         user.setUsername(username);
-        user.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
+        user.setPassword(password);
         user.setEmail(email);
         return userMapper.insert(user) > 0;
     }
@@ -39,7 +38,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User login(String username, String password) {
         User user = findByUsername(username);
-        if (user != null && user.getPassword().equals(DigestUtils.md5DigestAsHex(password.getBytes()))) {
+        if (user != null && user.getPassword().equals(password)) {
             return user;
         }
         return null;

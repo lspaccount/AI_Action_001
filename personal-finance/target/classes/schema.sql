@@ -1,4 +1,3 @@
--- 创建用户表
 CREATE TABLE IF NOT EXISTS t_user (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -8,14 +7,15 @@ CREATE TABLE IF NOT EXISTS t_user (
     update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 创建账单表
 CREATE TABLE IF NOT EXISTS t_bill (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
-    type INT NOT NULL,
-    amount DECIMAL(10,2) NOT NULL,
-    category VARCHAR(50),
-    remark VARCHAR(200),
-    bill_date DATE,
-    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    amount DECIMAL(10, 2) NOT NULL,
+    type VARCHAR(20) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    date DATE NOT NULL,
+    description VARCHAR(255),
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES t_user(id)
 );
