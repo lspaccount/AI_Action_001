@@ -1,5 +1,6 @@
 package com.finance.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.finance.entity.Bill;
 
@@ -13,4 +14,8 @@ public interface BillService extends IService<Bill> {
     List<Bill> getBillList(Long userId);
     
     Map<String, BigDecimal> getMonthlyStats(Long userId, String yearMonth);
+    
+    Page<Bill> getBillPage(Long userId, int pageNum, int pageSize, String category, String month);
+    
+    Map<String, Object> getDetailedMonthlyStats(Long userId, String month);
 }
